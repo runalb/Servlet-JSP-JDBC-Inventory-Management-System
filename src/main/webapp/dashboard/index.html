@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard - IMS</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+
+    <body>
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+            <a class="navbar-brand my-0 mr-md-auto" href="../index.html">
+                <img src="../img/logo.svg" alt="logo" width="130" height="30" alt="Logo" loading="lazy">
+            </a>
+            <button class="btn btn-outline logout-btn" onclick="location.href='../login.html'">Login</button>
+        </div>
+
+        <!--    {% block content %}-->
+        <div class="mt-4">
+            <div class="text-center p-3">
+                <h2 class="theme-color">Dashboard</h2>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row my-4">
+
+                <div class="col-sm">
+                    <button class="btn btn-block action-btn p-3" onclick="location.href='add_products.html'">
+                        <i class="far fa-plus-square pr-3"></i> Add Products
+                    </button>
+                </div>
+
+                <div class="col-sm">
+                    <button class="btn btn-block action-btn p-3" onclick="location.href='search_available_products.html'">
+                        <i class="fas fa-search pr-3"></i> Search Products
+                    </button>
+                </div>
+
+                <div class="col-sm">
+                    <button class="btn btn-block action-btn p-3" onclick="location.href='view_available_products.html'">
+                        <i class="fas fa-boxes pr-3"></i> View Available Products
+                    </button>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col-sm">
+                    <button class="btn btn-block action-btn p-3" onclick="location.href='sell_available_products.html'">
+                        <i class="far fa-minus-square pr-3"></i> Sell Products
+                    </button>
+                </div>
+
+                <div class="col-sm">
+                    <button class="btn btn-block action-btn p-3" onclick="location.href='view_sold_products.html'">
+                        <i class="fas fa-boxes pr-3"></i> View Sold Products
+                    </button>
+                </div>
+
+                <div class="col-sm">
+                    <button class="btn btn-block action-btn p-3" onclick="location.href='users.html'">
+                        <i class="fas fa-user-shield pr-3"></i> Users
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <!--  {% endblock %}    -->
+
+    </body>
+</html>
