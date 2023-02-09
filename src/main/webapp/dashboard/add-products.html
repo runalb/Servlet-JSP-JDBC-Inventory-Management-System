@@ -4,11 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Add Products - IMS</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../bootstrap-4.6.2/css/bootstrap.css">
         <link rel="stylesheet" href="../css/style.css">
+
     </head>
 
     <body>
@@ -30,10 +28,10 @@
                     </div>
 
 <!--                {% block dashboardcontent %}-->
-                    <form method="GET">
+                    <form action="AddProductsResult" method="GET">
 
                         <div class="form-group mx-4 mt-4">
-                            <input type="text" required name="productid" class="form-control" placeholder="Product ID">
+                            <input type="number" required name="productid" class="form-control" placeholder="Product ID">
                         </div>
 
                         <div class="form-group mx-4 mt-4">
@@ -41,11 +39,11 @@
                         </div>
 
                         <div class="form-group mx-4 mt-4">
-                            <input type="text" required name="productprice" class="form-control" placeholder="Product Price">
+                            <input type="number" required name="productprice" class="form-control" placeholder="Product Price">
                         </div>
 
                         <div class="form-group mx-4 mt-4">
-                            <input type="number" required name="qty" class="form-control" placeholder="Quantity">
+                            <input type="number" required name="productqty" class="form-control" placeholder="Quantity">
                         </div>
 
                         <div class="form-group mx-4 mt-4">
