@@ -66,6 +66,7 @@ public class SearchAvailableProductsResult extends HttpServlet {
             ps.setString(1,searchQuery);
             ps.setString(2,searchQuery);
             ResultSet rs = ps.executeQuery();
+            ps.clearParameters();
 
             if (rs.next()){
                 out.println("<table class='table table-striped text-center'>");
