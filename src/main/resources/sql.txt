@@ -1,0 +1,27 @@
+-------------------------------------------
+     sql 1 - available_products_table
+-------------------------------------------
+
+
+
+
+
+
+--------------------------------------------
+        sql 2 - sold_products_table
+--------------------------------------------
+
+ "CREATE TABLE IF NOT EXISTS sold_products_table (
+			date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			product_id VARCHAR(50),
+			product_name VARCHAR(50),
+			product_price VARCHAR(50),
+			quantity INT(11)
+	)";
+
+
+------------------------------------
+        sql 3 - users_table
+------------------------------------
+
+
