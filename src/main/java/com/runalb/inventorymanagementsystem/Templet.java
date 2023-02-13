@@ -10,6 +10,7 @@ import java.sql.*;
 @WebServlet(name = "Templet", value = "/dashboard/Templet")
 public class Templet extends HttpServlet {
 
+//    Connection con=null;
 //    public Templet(){
 //        try{
 //            Class.forName("com.mysql.cj.jdbc.Driver");
