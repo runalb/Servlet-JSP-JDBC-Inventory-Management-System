@@ -100,7 +100,7 @@ public class SellAvailableProductsResult extends HttpServlet {
 
                     if (i3>0){
 //                        out.println(i3+"Sold Product added to sold_products_table...!!!");
-                        out.println("<h1 class='text-center m-4'>Product sold successfully!</h1><br>");
+                        out.println("<h1 class='text-center m-4'>Product sold successfully!</h1>");
 
 //                        Sold product info in table
                         out.println("<table class='table table-striped text-center'>" +
