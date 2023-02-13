@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "Users", value = "/dashboard/Users")
-public class Users extends HttpServlet {
+@WebServlet(name = "Users", value = "/dashboard/ViewUsers")
+public class ViewUsers extends HttpServlet {
     Connection con=null;
-    public Users(){
+    public ViewUsers(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/inventory_management_system_db", "root","mysql123");
@@ -30,7 +30,7 @@ public class Users extends HttpServlet {
                         "<meta charset=\"UTF-8\"> " +
                         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> " +
                         // Add Page Title here
-                        "<title>Users - IMS</title> " +
+                        "<title>View Users - IMS</title> " +
                         "<link rel=\"stylesheet\" href=\"../bootstrap-4.6.2/css/bootstrap.css\"> " +
                         "<link rel=\"stylesheet\" href=\"../css/style.css\"> " +
                     "</head>");
@@ -52,7 +52,7 @@ public class Users extends HttpServlet {
                 "<div class=\"mt-4\"> " +
                 "<div class=\"text-center p-1\"> " +
                 // Add Title here
-                "<h3 class=\"theme-color\">Users</h3> " +
+                "<h3 class=\"theme-color\">View Users</h3> " +
                 "</div> " +
                 "</div>" );
 
@@ -62,23 +62,21 @@ public class Users extends HttpServlet {
             ResultSet rs = stmt.executeQuery("SELECT * FROM users_table");
 
             if (rs.next()){
+                rs.beforeFirst();
                 out.println("<table class='table table-striped text-center'>");
-                    out. println("<thead>" +
+                out. println("<thead>" +
                                     "<tr>" +
                                         "<th scope='col'>Username</th> " +
-                                        "<th scope='col'>Full Name</th> " +
                                         "<th scope='col'>Password</th> " +
                                         "<th scope='col'>Action</th> " +
                                     "</tr>" +
                                 "</thead>");
+                out.println("<tbody>");
 
-                    out.println("<tbody>");
-                    rs.beforeFirst();
-                    while(rs.next()) {
-                        out.println("<tr> " +
+                while(rs.next()) {
+                    out.println("<tr> " +
                                         "<td>"+rs.getString(1)+"</th> " +
                                         "<td>"+rs.getString(2)+"</td>" +
-                                        "<td>"+rs.getString(3)+"</td>" +
                                         "<td > " +
                                             "<a href=\"{% url 'dashboard:update' item.id %}\"> " +
                                                 "<button type=\"button\" class=\"btn action-btn\">Edit</button> " +
@@ -88,8 +86,8 @@ public class Users extends HttpServlet {
                                             "</a> " +
                                         "</td> " +
                                     "</tr>");
-                    }
-                    out.println("</tbody>");
+                }
+                out.println("</tbody>");
                 out.println("</table>");
 
             } else {
@@ -100,12 +98,11 @@ public class Users extends HttpServlet {
             e.printStackTrace();
         }
 
-        out.println("<button class='btn action-btn btn-block' onclick=\"location.href='../signup.html'\">Add New User</button>");
+        out.println("<button class='btn action-btn btn-block' onclick=\"location.href='../signup.html'\">Add New User</button><br>");
 
 
 
-        out.println(        "<br>"+
-                            "</div>" +
+        out.println(       "</div>" +
                         "</div>" +
                     "</div>");
 
