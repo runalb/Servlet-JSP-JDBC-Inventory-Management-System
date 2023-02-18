@@ -63,7 +63,7 @@ public class Dashboard extends HttpServlet {
                             "</div> ");
 
                 out.println("<div class=\"col-sm\"> " +
-                                "<button class=\"btn btn-block action-btn p-3\" onclick=\"location.href='ViewAvailableProducts'\"> " +
+                                "<button class=\"btn btn-block action-btn p-3\" onclick=\"location.href='Dashboard/ViewAvailableProducts'\"> " +
                                      "<i class=\"fas fa-boxes pr-3\"></i> View Available Products " +
                                 "</button> " +
                             "</div> ");
