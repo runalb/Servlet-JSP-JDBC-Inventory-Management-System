@@ -1,16 +1,16 @@
 package com.runalb.inventorymanagementsystem;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "SearchAvailableProductsResult", urlPatterns = "/Dashboard/SearchAvailableProductsResult")
-public class SearchAvailableProductsResult extends HttpServlet {
+@WebServlet(name = "SearchAvailableProducts", urlPatterns = "/Dashboard/SearchAvailableProducts")
+public class SearchAvailableProducts extends HttpServlet {
     Connection con=null;
-    public SearchAvailableProductsResult(){
+    public SearchAvailableProducts(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/inventory_management_system_db", "root","mysql123");
@@ -30,16 +30,14 @@ public class SearchAvailableProductsResult extends HttpServlet {
         String sessionId = session.getId();
         String username = (String) session.getAttribute("username");
 
-        // getParameter values from HTML form
-        String searchQuery = request.getParameter("searchquery");
-
 
         out.println("<!DOCTYPE html> <html lang=\"en\">");
         out.println("<head> " +
                 "<meta charset=\"UTF-8\"> " +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> " +
                 // Add Page Title here
-                "<title>Result - Search Available Products - IMS</title> " +
+                "<title>Search Available Products - IMS</title> " +
+                "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css\" integrity=\"sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />"+
                 "<link rel=\"stylesheet\" href=\"../bootstrap-4.6.2/css/bootstrap.css\"> " +
                 "<link rel=\"stylesheet\" href=\"../css/style.css\"> " +
                 "</head>");
@@ -66,69 +64,28 @@ public class SearchAvailableProductsResult extends HttpServlet {
         // block content
         out.println("<div class=\"container h-100\"> " +
                 "<div class=\"row align-items-center h-100\" > " +
-                "<div class=\"col-11 mx-auto\"> " +
+                "<div class=\"col-9 mx-auto\"> " +
                 "<div class=\"mt-4\"> " +
                 "<div class=\"text-center p-1\"> " +
                 // Add Title here
-                "<h3 class=\"theme-color\">Search Result</h3> " +
+                "<h3 class=\"theme-color\">Search Available Products</h3> " +
                 "</div> " +
                 "</div>" );
 
         // dashboard content
-        try{
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM available_products_table WHERE product_id=? OR product_name=?",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            ps.setString(1,searchQuery);
-            ps.setString(2,searchQuery);
-            ResultSet rs = ps.executeQuery();
-            ps.clearParameters();
+        out.println("<form action=\"SearchAvailableProductsResult\" method=\"GET\"> " +
+                        "<div class=\"input-group md-form form-md form-2 p-3\"> " +
+                            "<input class=\"form-control my-0 py-1\" name=\"searchquery\" type=\"text\" placeholder=\"Enter Product ID or Name\" aria-label=\"Search\">" +
+                            "<button class=\"btn my-0 py-1\" type=\"submit\"> " +
+                                "<span class=\"input-group-text search-btn\" id=\"basic-text1\">" +
+                                    "<i class=\"fas fa-search fa-fw search-icon\" aria-hidden=\"false\"></i>" +
+                                "</span> " +
+                            "</button> " +
+                        "</div> " +
+                    "</form>");
 
-            if (rs.next()){
-                out.println("<table class='table table-striped text-center'>");
-                out. println("<thead>" +
-                        "<tr>" +
-                        "<th scope='col'>Product ID</th>" +
-                        "<th scope='col'>Product Name</th>" +
-                        "<th scope='col'>Product Price</th>" +
-                        "<th scope='col'>Quantity</th>" +
-                        "<th scope='col'>Action</th>" +
-                        "</tr>" +
-                        "</thead>");
-                    out.println("<tbody>");
 
-                    rs.beforeFirst();
-
-                    while(rs.next()) {
-                        out.println("<tr> " +
-                                "<td>"+rs.getInt(1)+"</th> " +
-                                "<td>"+rs.getString(2)+"</td>" +
-                                "<td>"+rs.getInt(3)+"</td>" +
-                                "<td>"+rs.getInt(4)+"</td>" +
-                                "<td > " +
-                                "<a href=\"{% url 'dashboard:update' item.id %}\"> " +
-                                "<button type=\"button\" class=\"btn action-btn\">Update</button> " +
-                                "</a> " +
-                                "<a href=\"{% url 'dashboard:delete' item.id %}\"> " +
-                                "<button type=\"button\" class=\"btn btn-danger\">Delete</button> " +
-                                "</a> " +
-                                "</td> " +
-                                "</tr>");
-                    }
-                out.println("</tbody>");
-                out.println("</table>");
-
-            } else {
-                out.println("<h1 class='text-center'>No Products are their to view....</h1>");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Back btn - Dashboard
-        out.println("<button class='btn action-btn btn-block' onclick=\"location.href='../Dashboard'\">Go Back</button>");
-
-        out.println(        "<br>"+
-                "</div>" +
+        out.println("</div>" +
                 "</div>" +
                 "</div>");
 
