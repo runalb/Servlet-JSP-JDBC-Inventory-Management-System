@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-@WebServlet(name = "Logout", value = "/Logout")
+@WebServlet(name = "Logout", urlPatterns = "/Logout")
 public class Logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,10 +36,10 @@ public class Logout extends HttpServlet {
 
         // nav bar code
         out.println("<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm\"> " +
-                    "<a class=\"navbar-brand my-0 mr-md-auto\" href=\"../index.html\"> " +
+                    "<a class=\"navbar-brand my-0 mr-md-auto\" href=\"index.html\"> " +
                     "<img src=\"img/logo.svg\" alt=\"logo\" width=\"130\" height=\"30\" alt=\"Logo\" loading=\"lazy\"> " +
                     "</a> " +
-                    "<button class=\"btn btn-outline logout-btn\" onclick=\"location.href='login.html'\">Login</button> " +
+                    "<button class=\"btn btn-outline logout-btn\" onclick=\"location.href='login.html'\">Dashboard Login</button> " +
                     "</div>");
 
 
