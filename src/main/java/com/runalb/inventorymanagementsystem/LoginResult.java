@@ -29,8 +29,12 @@ public class LoginResult extends HttpServlet {
         String uname=request.getParameter("username");
         String pswd=request.getParameter("password");
 
+        // RequestDispatcher
         RequestDispatcher rd1=request.getRequestDispatcher("/dashboard/index.html");
         RequestDispatcher rd2=request.getRequestDispatcher("login.html");
+
+        // HttpSession
+        HttpSession session = request.getSession();
 
         // dashboard content
         try {
@@ -42,6 +46,8 @@ public class LoginResult extends HttpServlet {
 
             if(rs.next())
             {
+                // set Http Session Attribute username
+                session.setAttribute("username",uname);
                 response.sendRedirect("dashboard/index.html");
             }
 
