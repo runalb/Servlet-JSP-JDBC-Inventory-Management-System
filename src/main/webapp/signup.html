@@ -6,6 +6,17 @@
         <title>Sign Up - IMS</title>
         <link rel="stylesheet" href="bootstrap-4.6.2/css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
+        <script>
+            function validatePwd() {
+                let pwd1 = document.signUp.password1.value;
+                let pwd2 = document.signUp.password2.value;
+
+                if (pwd1 !== pwd2) {
+                    let err = document.getElementById("err").innerHTML = "<i>Entered passwords didn't match! Try again....</i>";
+                    return false;
+                }
+            }
+        </script>
     </head>
 
         <body>
@@ -30,7 +41,9 @@
                                 </div>
                             </div>
 
-                            <form method="POST">
+                            <p class="text-center p-3" id="err" style="color: red"></p>
+
+                            <form action="SignUpResult" method="POST" name="signUp" onsubmit="return validatePwd()">
                                 <div class="form-group mx-4 mt-4">
                                     <label for="username">Username:</label>
                                     <input type="text" required name="username" class="form-control" id="username" placeholder="Enter Username">
@@ -50,6 +63,7 @@
                                     <button type="submit" class="btn login-btn btn-block ">Sign up</button>
                                 </div>
                             </form>
+                            <p class="text-center p-3">Already have an account? <a href="login.html">Login here</a></p>
 
                         </div>
                     </div>
