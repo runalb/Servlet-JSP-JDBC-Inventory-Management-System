@@ -47,7 +47,8 @@ public class LoginResult extends HttpServlet {
 
             else
             {
-                out.print("<h4>Login deined....! Wrong UserName or password..</h4>");
+                out.println("<script> let errMsg = \"<i>Invalid Username or Password!</i>\";</script>");
+                response.setContentType("text/html;charset=UTF-8");
                 rd2.include(request, response);
             }
 

@@ -30,6 +30,8 @@
                                 </div>
                             </div>
 
+                            <p class="text-center p-3" id="err" style="color: red"></p>
+
                             <form action='LoginResult' method="GET">
 
                             <div class="form-group">
@@ -57,6 +59,10 @@
         </div>
 
         <!--    {% endblock %}-->
+
+        <script>
+            document.getElementById("err").innerHTML = errMsg;
+        </script>
 
     </body>
 </html>
