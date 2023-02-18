@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "Login", value = "/LoginResult")
+@WebServlet(name = "Login", urlPatterns = "/LoginResult")
 public class LoginResult extends HttpServlet {
     Connection con=null;
     public LoginResult(){
@@ -30,7 +30,7 @@ public class LoginResult extends HttpServlet {
         String pswd=request.getParameter("password");
 
         // RequestDispatcher
-        RequestDispatcher rd1=request.getRequestDispatcher("/dashboard/index.html");
+        RequestDispatcher rd1=request.getRequestDispatcher("/Dashboard");
         RequestDispatcher rd2=request.getRequestDispatcher("login.html");
 
         // HttpSession
@@ -48,7 +48,7 @@ public class LoginResult extends HttpServlet {
             {
                 // set Http Session Attribute username
                 session.setAttribute("username",uname);
-                response.sendRedirect("dashboard/index.html");
+                response.sendRedirect("Dashboard");
             }
 
             else
