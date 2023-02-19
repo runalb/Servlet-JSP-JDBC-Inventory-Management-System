@@ -113,7 +113,7 @@ public class ViewUsers extends HttpServlet {
             e.printStackTrace();
         }
 
-        out.println("<button class='btn action-btn btn-block' onclick=\"location.href='../signup.html'\">Add New User</button><br>");
+        out.println("<button class='btn action-btn btn-block' onclick=\"location.href='../SignUp'\">Add New User</button><br>");
 
 
 

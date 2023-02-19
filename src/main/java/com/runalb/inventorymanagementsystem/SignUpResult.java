@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "SignUpResult", value = "/SignUpResult")
+@WebServlet(name = "SignUpResult", urlPatterns = "/SignUpResult")
 public class SignUpResult extends HttpServlet {
     Connection con=null;
     public SignUpResult(){
@@ -25,9 +25,14 @@ public class SignUpResult extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
+        // HttpSession
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String username = (String) session.getAttribute("username");
+
         // getParameter values from HTML form
-        String username = request.getParameter("username");
-        String password = request.getParameter("password1");
+        String signUpUsername = request.getParameter("username");
+        String signUpPassword = request.getParameter("password1");
 
 
         out.println("<!DOCTYPE html> <html lang=\"en\">");
@@ -42,13 +47,22 @@ public class SignUpResult extends HttpServlet {
 
         out.println("<body>");
 
-        // nav bar code
-        out.println("<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm\"> " +
-                "<a class=\"navbar-brand my-0 mr-md-auto\" href=\"index.html\"> " +
-                "<img src=\"img/logo.svg\" alt=\"logo\" width=\"130\" height=\"30\" alt=\"Logo\" loading=\"lazy\"> " +
-                "</a> " +
-                "<button class=\"btn btn-outline logout-btn\" onclick=\"location.href='login.html'\">Login</button> " +
-                "</div>");
+        // nav bar code - dashboard content
+        if (username != null){
+            out.println("<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm\"> " +
+                    "<a class=\"navbar-brand my-0 mr-md-auto\" href=\"Dashboard\"> " +
+                    "<img src=\"img/logo.svg\" alt=\"logo\" width=\"130\" height=\"30\" alt=\"Logo\" loading=\"lazy\"> " +
+                    "</a> " +
+                    "<button class=\"btn btn-outline logout-btn\" onclick=\"location.href='Logout'\">Logout ("+username+")</button> " +
+                    "</div>");
+        } else {
+            out.println("<div class=\"d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm\"> " +
+                    "<a class=\"navbar-brand my-0 mr-md-auto\" href=\"index.html\"> " +
+                    "<img src=\"img/logo.svg\" alt=\"logo\" width=\"130\" height=\"30\" alt=\"Logo\" loading=\"lazy\"> " +
+                    "</a> " +
+                    "<button class=\"btn btn-outline logout-btn\" onclick=\"location.href='login.html'\">Dashboard Login</button> " +
+                    "</div>");
+        }
 
         // block content
         out.println("<div class=\"container h-100\"> " +
@@ -64,30 +78,29 @@ public class SignUpResult extends HttpServlet {
         // dashboard content
         try{
             PreparedStatement ps = con.prepareStatement("INSERT INTO users_table VALUES (?,?)", ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            ps.setString(1,username);
-            ps.setString(2,password);
-
+            ps.setString(1,signUpUsername);
+            ps.setString(2,signUpPassword);
 
             try {
                 int i = ps.executeUpdate();
 
                 if (i > 0) {
                     out.println("<h1 class='text-center'>New User Added successfully!</h1>");
-                    out.println("<h2 class='text-center'><u>"+username+"</u></h2>");
+                    out.println("<h2 class='text-center'><u>"+signUpUsername+"</u></h2>");
                     out.println("<button class='btn action-btn btn-block' onclick=\"location.href='index.html'\">Go Back</button>");
                 }
 
             } catch (SQLIntegrityConstraintViolationException e){
                 out.println("<h1 class='text-center'>Username Already Taken!!!</h1>");
-                out.println("<h2 class='text-center'><u>"+username+"</u></h2>");
-                out.println("<button class='btn action-btn btn-block' onclick=\"location.href='signup.html'\">Go Back</button>");
+                out.println("<h2 class='text-center'><u>"+signUpUsername+"</u></h2>");
+                out.println("<button class='btn action-btn btn-block' onclick=\"location.href='SignUp'\">Go Back</button>");
             }
 
             ps.clearParameters();
 
         } catch (SQLException e) {
             out.println("<h1 class='text-center'>Something went wrong! </h1>");
-            out.println("<button class='btn action-btn btn-block' onclick=\"location.href='add-products.html'\">Go Back</button>");
+            out.println("<button class='btn action-btn btn-block' onclick=\"location.href='SignUp'\">Go Back</button>");
             e.printStackTrace();
         }
 
