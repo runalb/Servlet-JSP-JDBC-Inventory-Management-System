@@ -23,7 +23,7 @@ public class Dashboard extends HttpServlet {
                 "<meta charset=\"UTF-8\"> " +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> " +
                 // Add Page Title here
-                "<title>DASHBOARD SERVELET Dashboard - IMS</title> " +
+                "<title>Dashboard - IMS</title> " +
                 "<link rel=\"stylesheet\" href=\"bootstrap-4.6.2/css/bootstrap.css\"> " +
                 "<link rel=\"stylesheet\" href=\"css/style.css\"> " +
                 "</head>");
